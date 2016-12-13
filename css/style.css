@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.clock {
+    font-size: 30px;
+    padding: 5px;
+}
+
+.circle-progress {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.circle-progress-btn {
+    font-size: 75px;
+    line-height: 75px;
+    position: absolute;
+    left: 55%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
