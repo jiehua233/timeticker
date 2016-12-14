@@ -12,32 +12,39 @@ $(function(){
         }
     });
 
-    var interval;
-
-    var diAudio = document.createElement("audio");
-    diAudio.setAttribute("src", "sound/di.mp3");
-
-    var startAudio = document.createElement("audio");
-    startAudio.setAttribute("src", "sound/start.mp3");
-    startAudio.addEventListener("ended", function(){
-        $(".circle-progress-btn").data("status", "pause");
-        $(".circle-progress-btn").trigger("click");
-    });
-
-    var endAudio = document.createElement("audio");
-    endAudio.setAttribute("src", "sound/end.mp3");
-    endAudio.addEventListener("ended", function(){
-        $("#clock-time").html($("#total-time").html());
-        $(".circle-progress-btn").html('<i class="glyphicon glyphicon-play"></i>');
-        $(".circle-progress-btn").data("status", "init");
-        bar.animate(0);
-    });
-
+    var interval, diAudio, startAudio, endAudio;
     $(".circle-progress-btn").click(function(){
         var status = $(this).data("status");
         console.log(status);
         if (status == "init"){
+            diAudio = document.createElement("audio");
+            diAudio.play();
+            diAudio.src = "sound/di.mp3";
+
+            startAudio = document.createElement("audio");
+            startAudio.play();
+            startAudio.src = "sound/start.mp3";
+            startAudio.addEventListener("ended", function(){
+                $(".circle-progress-btn").data("status", "pause");
+                $(".circle-progress-btn").trigger("click");
+            });
+
+            endAudio = document.createElement("audio");
+            endAudio.play();
+            endAudio.src = "sound/end.mp3";
+            endAudio.addEventListener("ended", function(){
+                $("#clock-time").html($("#total-time").html());
+                $(".circle-progress-btn").html('<i class="glyphicon glyphicon-play"></i>');
+                $(".circle-progress-btn").data("status", "ready");
+                bar.animate(0);
+            });
+
+            $(this).data("status", "ready");
+            $(this).trigger("click");
+
+        }else if (status == "ready"){
             $(this).html('<i class="glyphicon glyphicon-pause"></i>');
+            $(this).data("status", "freeze");
             startAudio.play();
 
         }else if (status == "pause"){
