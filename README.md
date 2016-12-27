@@ -5,5 +5,5 @@
 
 ## Demos
 
-[查看](http://demos.chenjiehua.me/timeticker/)
+[查看](http://demo.chenjiehua.me/timeticker/)
 
